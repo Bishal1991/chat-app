@@ -1,4 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+  import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:demopcpsseca/chat/maps/maps.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/user_model.dart';
@@ -150,7 +151,7 @@ class _ChatConversationPageState extends State<ChatConversationPage> {
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.85),
+                        color: Colors.white.withValues(alpha: 0.85),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
@@ -194,7 +195,7 @@ class _ChatConversationPageState extends State<ChatConversationPage> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.04),
+                              color: Colors.black.withValues(alpha: 0.04),
                               offset: const Offset(0, 1),
                               blurRadius: 1,
                             ),
@@ -256,20 +257,31 @@ class _ChatConversationPageState extends State<ChatConversationPage> {
                         borderRadius: BorderRadius.circular(25),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.06),
+                            color: Colors.black.withValues(alpha: 0.06),
                             offset: const Offset(0, 1),
                             blurRadius: 2,
                           ),
                         ],
                       ),
+
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextField(
                         controller: _messageController,
                         maxLines: null,
                         textCapitalization: TextCapitalization.sentences,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           hintText: 'Type a message...',
                           border: InputBorder.none,
+                          icon: IconButton(
+                              onPressed: (){
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context)=> MapSample()
+                                    )
+                                );
+                              },
+                              icon: const Icon(Icons.add))
                         ),
                         onSubmitted: (_) => _handleSend(),
                       ),
